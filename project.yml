@@ -1,0 +1,60 @@
+name: TripRoad
+options:
+  usesTabs: false
+  indentWidth: 2
+  tabWidth: 2
+  # options:
+  #   clearBaseSettings: true
+  deploymentTarget:
+    iOS: '13.0'
+  Debug: debug
+  Release: release
+  groupSortPosition: bottom
+  groupOrdering: 
+    - order: [TripRoad, Products]
+    - pattern: 'TripRoad'
+      order: [Sources, Frameworks, Resources, Supporting Files, Preview Content]
+targets:
+  TripRoad:
+    type: application
+    platform: iOS
+    deploymentTarget: '13.0'
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.hyunwoo.triproad
+        INFOPLIST_FILE: TripRoad/Supporting Files/Info.plist
+        INFOPLIST_PREPROCESS: true
+        LIBRARY_SEARCH_PATHS: 
+          - $(inherited) 
+        FRAMEWORK_SEARCH_PATHS: 
+          - $(inherited)
+        DEVELOPMENT_TEAM: 6F5H8KU4M7
+        CODE_SIGN_STYLE: Manual
+      configs:
+        Debug:
+          CODE_SIGN_IDENTITY: "Apple Development: Hyun-Woo Kim (955L6F6685)"
+          PROVISIONING_PROFILE_SPECIFIER: "match Development *"
+        Release:
+          CODE_SIGN_IDENTITY: "Apple Distribution: HyunWoo Kim (6F5H8KU4M7)"
+          PROVISIONING_PROFILE_SPECIFIER: "match AdHoc $(PRODUCT_BUNDLE_IDENTIFIER)"
+    sources:
+      - TripRoad
+      - path: TripRoad/Sources
+        type: group
+      - path: TripRoad/Resources
+        type: group
+      ## Use External Library
+      # - path: TripRoad/Frameworks
+      #   type: group
+      - path: 'TripRoad/Supporting Files'
+        type: group
+      ##  Use Firebase
+      # - path: "TripRoad/Supporting Files/GoogleService-Info.plist"
+      # buildPhase: resources
+      ##  Use SwiftUI
+      - path: TripRoad/Preview Content
+        type: group
+
+
+
+
