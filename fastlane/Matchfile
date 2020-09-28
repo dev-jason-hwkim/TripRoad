@@ -1,4 +1,4 @@
-git_url("https://github.com/dev-jason-hwkim/certificates.git")
+git_url ENV["MATCH_REPO"]
 
 storage_mode("git")
 
