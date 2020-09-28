@@ -20,7 +20,7 @@ jobs:
         quiet: true
     - name: Install Pods
       run: |
-        pod install
+        pod install --repo-update
     - uses: maierj/fastlane-action@v1.4.0
       with:
          lane: 'beta'
