@@ -19,6 +19,7 @@ jobs:
         xcodegen --spec project.yml
     - name: Install Pods
       run: |
+        bundle update --bundler
         pod install
     - uses: maierj/fastlane-action@v1.4.0
       with:
