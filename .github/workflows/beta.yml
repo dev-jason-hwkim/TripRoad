@@ -16,7 +16,7 @@ jobs:
     - uses: xavierLowmiller/xcodegen-action@1.0.0
       name: Xcodegen Generate
       with:
-         spec: project.yaml
+         spec: project.yml
          quiet: true
          version: '2.15.1'
     - name: Install Pods
