@@ -29,7 +29,7 @@ platform :ios do
 	desc "Push a new Distribution build to the Firebase Beta"
 	lane :beta do 
 		# match adhoc Provisioning profile
-		match(type: "adhoc")
+		match(type: "adhoc", readonly: is_ci)
 
 		
 		build_number
@@ -51,7 +51,7 @@ platform :ios do
 			)
 
 		# discard change app icon
-	    path = Pathname.new(Dir.pwd).dirname
+		path = Pathname.new(Dir.pwd).dirname
 		app_icons = Dir.glob("#{path}/**/*.appiconset/*.{png,PNG}") 
 		reset_git_repo(
 			force: true,
@@ -64,8 +64,7 @@ platform :ios do
 	desc "Push a new release build to the App Store"
 	lane :release do 
 		# match appstore Provisioning Profile 
-		match(type: "appstore")
-
+		match(type: "appstore", readonly: is_ci)
 		build_number
 
 		# increase build number

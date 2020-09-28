@@ -20,7 +20,7 @@ or alternatively using `brew install fastlane`
 ```
 fastlane ios build_number
 ```
-Versioning... 
+Use Info.plist Build
 ### ios beta
 ```
 fastlane ios beta
