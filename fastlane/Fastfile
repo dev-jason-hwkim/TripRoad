@@ -16,30 +16,74 @@
 default_platform(:ios)
 
 platform :ios do
-	desc "Versioning... "
-	lane :version do		
-		# build = get_build_number_from_plist
-		# increment_build_number_in_plist(build_number: build.to_s)
-		
+
+	version = get_version_number_from_plist
+	build = get_build_number_from_plist
+
+	desc "Use Info.plist Build"
+	lane :build_number do		
+		increment_build_number_in_plist(build_number: build.to_s)
 	end
 
-
-
-	desc "Push a new Development build to the Firebase Hosting"
-	lane :develop do 		
-		increment_build_number_in_plist
-	end
 
 	desc "Push a new Distribution build to the Firebase Beta"
 	lane :beta do 
+		# match adhoc Provisioning profile
+		match(type: "adhoc")
+
+		
+		build_number
+
+		# increase build number
 		increment_build_number_in_plist
+
+		# added badge
+		add_badge(shield: "Version-%s-orange" % version, no_badge: true)
+
+		# build App
+		build_app(scheme: "TripRoad",
+			workspace: "TripRoad.xcworkspace")
+
+		# upload firebase
+		firebase_app_distribution(
+			app: "1:255109360001:ios:9d93d5823b4f7b12cc2080",
+			release_notes: "Test"
+			)
+
+		# discard change app icon
+	    path = Pathname.new(Dir.pwd).dirname
+		app_icons = Dir.glob("#{path}/**/*.appiconset/*.{png,PNG}") 
+		reset_git_repo(
+			force: true,
+			files: app_icons
+			) 
+
 
 	end
 
 	desc "Push a new release build to the App Store"
 	lane :release do 
+		# match appstore Provisioning Profile 
+		match(type: "appstore")
+
+		build_number
+
+		# increase build number
 		increment_build_number_in_plist
-		
+
+		# build App
+		build_app(scheme: "TripRoad",
+			workspace: "TripRoad.xcworkspace")
+
+		# upload appstore
+		deliver(
+			submit_for_review: false,
+			automatic_release: false,
+		    force: true, # Skip HTMl report verification
+		    skip_metadata: true,
+		    skip_screenshots: true
+		    )
+
 	end
 
 

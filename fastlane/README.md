@@ -16,16 +16,11 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios version
+### ios build_number
 ```
-fastlane ios version
+fastlane ios build_number
 ```
 Versioning... 
-### ios develop
-```
-fastlane ios develop
-```
-Push a new Development build to the Firebase Hosting
 ### ios beta
 ```
 fastlane ios beta
