@@ -20,6 +20,10 @@ platform :ios do
 	version = get_version_number_from_plist
 	build = get_build_number_from_plist
 
+	username = ENV['USERNAME']
+	personal_github_access_token = ENV["PERSONAL_GITHUB_ACCESS_TOKEN"]
+
+
 	desc "Use Info.plist Build"
 	lane :build_number do		
 		increment_build_number_in_plist(build_number: build.to_s)
@@ -29,7 +33,15 @@ platform :ios do
 	desc "Push a new Distribution build to the Firebase Beta"
 	lane :beta do 
 		# match adhoc Provisioning profile
-		match(type: "adhoc", readonly: is_ci)
+
+
+
+
+		match(
+			type: "adhoc", 
+			git_basic_authorization Base64.encode64("#{username}:#{personal_github_access_token}"])
+			readonly: true
+		)
 
 		
 		build_number
