@@ -39,7 +39,7 @@ platform :ios do
 
 		match(
 			type: "adhoc", 
-			git_basic_authorization Base64.encode64('#{username}:#{personal_github_access_token}'),
+			git_basic_authorization Base64.encode64("#{username}:#{personal_github_access_token}"),
 			readonly: true
 		)
 
