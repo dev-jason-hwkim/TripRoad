@@ -1,7 +1,4 @@
-git_url("https://github.com/dev-jason-hwkim/certificates.git")
-
-storage_mode("git")
+git_url ENV['MATCH_REPO']
 
 type("development")
 username("dev.hwkim@gmail.com")
-git_basic_authorization Base64.encode64("dev-jason-hwkim:db9710388b31446b9d6c6a51824b5242d016dbdb")
