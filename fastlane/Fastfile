@@ -20,9 +20,6 @@ platform :ios do
 	version = get_version_number_from_plist
 	build = get_build_number_from_plist
 
-	username = ENV['USERNAME']
-	personal_github_access_token = ENV["PERSONAL_GITHUB_ACCESS_TOKEN"]
-
 
 	desc "Use Info.plist Build"
 	lane :build_number do		
@@ -39,7 +36,6 @@ platform :ios do
 
 		match(
 			type: "adhoc", 
-			git_basic_authorization: Base64.encode64("#{username}:#{personal_github_access_token}"),
 			readonly: true
 		)
 
