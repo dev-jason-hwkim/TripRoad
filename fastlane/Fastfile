@@ -40,6 +40,7 @@ platform :ios do
 		match(
 			type: "adhoc", 
 			git_basic_authorization: Base64.strict_encode64("#{username}:#{personal_github_access_token}"),
+			keychain_password: ENV['MATCH_PASSWORD'],
 			readonly: true
 		)
 
