@@ -1,0 +1,39 @@
+name: beta.yml
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: xavierLowmiller/xcodegen-action@1.0.0
+      with:
+        spec: project.yml
+        quiet: true
+        version: '2.15.1'
+    - name: Install Pods
+      run: |
+        bundle update --bundler
+        pod install
+    - name: Install ImagePick
+      run: |
+        brew brew install imagemagick
+    - uses: maierj/fastlane-action@v1.4.0
+      env: 
+          APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}
+          MATCH_REPO: ${{ secrets.MATCH_REPO }}
+          PERSONAL_GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_GITHUB_ACCESS_TOKEN }}
+          USERNAME: ${{ secrets.USERNAME }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+      with:
+         lane: 'beta'
+
