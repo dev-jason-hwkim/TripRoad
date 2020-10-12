@@ -54,7 +54,6 @@ platform :ios do
 		add_badge(shield: "Version-%s-orange" % version, no_badge: true)
 
 		# build App
-		xcversion(version: "12.0.1")
 		build_app(scheme: "TripRoad",
 			workspace: "TripRoad.xcworkspace")
 
