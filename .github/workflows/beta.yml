@@ -30,7 +30,7 @@ jobs:
           APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}
           MATCH_REPO: ${{ secrets.MATCH_REPO }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          USERNAME: ${{ secrets.USERNAME }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       with:
          lane: 'beta'
