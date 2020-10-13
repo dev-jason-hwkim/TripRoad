@@ -25,17 +25,14 @@ jobs:
     - name: Install ImagePick
       run: |
         brew install imagemagick
-    - name: build iOS App
-      
-#     - uses: maierj/fastlane-action@v1.4.0
+    - name: build iOS App      
+    - uses: maierj/fastlane-action@v1.4.0
       env: 
           APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}
           MATCH_REPO: ${{ secrets.MATCH_REPO }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: |
-        fastlane --version
-
-#       with:
-#          lane: 'beta'
+      with:
+        lane: 'beta'
+        subdirectory: 'ios'
 
