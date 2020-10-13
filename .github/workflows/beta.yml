@@ -34,8 +34,7 @@ jobs:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        gem install fastlane
-        fastlane ios beta --verbose
+        fastlane --version
 
 #       with:
 #          lane: 'beta'
