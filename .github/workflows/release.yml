@@ -1,4 +1,4 @@
-name: beta.yml
+name: release.yml
 
 on:
   push:
