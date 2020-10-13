@@ -21,7 +21,7 @@ platform :ios do
 	build = get_build_number_from_plist
 
 	username = ENV['USERNAME']
-	personal_github_access_token = ENV["PERSONAL_GITHUB_ACCESS_TOKEN"]
+	github_token = ENV["GITHUB_TOKEN"]
 
 
 	desc "Use Info.plist Build"
@@ -39,7 +39,7 @@ platform :ios do
 
 		match(
 			type: "adhoc", 
-			git_basic_authorization: Base64.strict_encode64("#{username}:#{personal_github_access_token}"),
+			git_basic_authorization: Base64.strict_encode64("#{username}:#{github_token}"),
 			keychain_password: ENV['MATCH_PASSWORD'],
 			readonly: true
 		)
@@ -59,7 +59,8 @@ platform :ios do
 
 		# upload firebase
 		firebase_app_distribution(
-			app: "1:255109360001:ios:9d93d5823b4f7b12cc2080",
+			app: ENV['FIREBASE_APP_ID'],
+			firebase_cli_token: ENV['FIREBASE_TOKEN'],
 			release_notes: "Test"
 			)
 
