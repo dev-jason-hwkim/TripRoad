@@ -1,4 +1,6 @@
 git_url ENV['MATCH_REPO']
+app_identifier "com.hyunwoo.triproad"
+username ENV['APPLE_ACCOUNT']
 
-type("development")
-username("dev.hwkim@gmail.com")
+
+git_branch "main"
