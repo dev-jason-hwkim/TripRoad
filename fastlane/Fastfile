@@ -103,7 +103,7 @@ platform :ios do
 			git_basic_authorization: Base64.strict_encode64("#{username}:#{github_token}"),
 		  	keychain_name: "appstore.keychain",
 			keychain_password: ENV['MATCH_PASSWORD'],
-			readonly: false
+			readonly: is_ci
 		)
 		
 		build_number
