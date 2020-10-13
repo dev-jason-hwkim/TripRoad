@@ -51,18 +51,18 @@ platform :ios do
 		increment_build_number_in_plist
 
 		# added badge
-		add_badge(shield: "Version-%s-orange" % version, no_badge: true)
+# 		add_badge(shield: "Version-%s-orange" % version, no_badge: true)
 
 		# build App
 		build_app(scheme: "TripRoad",
 			workspace: "TripRoad.xcworkspace")
 
 		# upload firebase
-		firebase_app_distribution(
-			app: ENV['FIREBASE_APP_ID'],
-			firebase_cli_token: ENV['FIREBASE_TOKEN'],
-			release_notes: "Test"
-			)
+# 		firebase_app_distribution(
+# 			app: ENV['FIREBASE_APP_ID'],
+# 			firebase_cli_token: ENV['FIREBASE_TOKEN'],
+# 			release_notes: "Test"
+# 			)
 
 		# discard change app icon
 		path = Pathname.new(Dir.pwd).dirname
