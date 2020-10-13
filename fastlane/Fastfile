@@ -50,7 +50,7 @@ platform :ios do
 			git_basic_authorization: Base64.strict_encode64("#{username}:#{github_token}"),
 		  	keychain_name: "keychain",
 			keychain_password: ENV['MATCH_PASSWORD'],
-			readonly: true
+			readonly: is_ci
 		)
 
 		
@@ -87,7 +87,25 @@ platform :ios do
 	desc "Push a new release build to the App Store"
 	lane :release do 
 		# match appstore Provisioning Profile 
-		match(type: "appstore", readonly: is_ci)
+		if ENV['CI']
+		      create_keychain(
+			  name: "keychain",
+			  password: ENV['MATCH_PASSWORD'],
+			  default_keychain: true,
+			  unlock: true,
+			  timeout: 3600,
+			  lock_when_sleeps: false
+		      )
+		end
+
+		match(
+			type: "appstore", 
+			git_basic_authorization: Base64.strict_encode64("#{username}:#{github_token}"),
+		  	keychain_name: "keychain",
+			keychain_password: ENV['MATCH_PASSWORD'],
+			readonly: is_ci
+		)
+		
 		build_number
 
 		# increase build number
@@ -101,10 +119,10 @@ platform :ios do
 		deliver(
 			submit_for_review: false,
 			automatic_release: false,
-		    force: true, # Skip HTMl report verification
-		    skip_metadata: true,
-		    skip_screenshots: true
-		    )
+		    	force: true, # Skip HTMl report verification
+		    	skip_metadata: true,
+		    	skip_screenshots: true
+		    	)
 
 	end
 
