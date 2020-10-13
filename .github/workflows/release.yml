@@ -24,7 +24,8 @@ jobs:
 #     - name: Install ImagePick
 #       run: |
 #         brew install imagemagick
-    - uses: maierj/fastlane-action@v1.4.0
+#     - uses: maierj/fastlane-action@v1.4.0
+      - name: fastlane build
       env: 
           APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}
           MATCH_REPO: ${{ secrets.MATCH_REPO }}
@@ -32,6 +33,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      with:
-        lane: 'release'
+      run: |
+        gem install fastlane
+        fastlane ios release --verbose
 
