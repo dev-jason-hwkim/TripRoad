@@ -20,7 +20,7 @@ platform :ios do
 	version = get_version_number_from_plist
 	build = get_build_number_from_plist
 
-	username = ENV['USERNAME']
+	username = ENV['GITHUB_ACTOR']
 	github_token = ENV["GITHUB_TOKEN"]
 
 
