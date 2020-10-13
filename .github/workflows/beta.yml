@@ -29,8 +29,8 @@ jobs:
       env: 
           APPLE_ACCOUNT: ${{ secrets.APPLE_ACCOUNT }}
           MATCH_REPO: ${{ secrets.MATCH_REPO }}
-          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          USERNAME: ${{ secrets.USERNAME }}
 
       with:
          lane: 'beta'
