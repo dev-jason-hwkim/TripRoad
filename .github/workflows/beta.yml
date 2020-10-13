@@ -34,5 +34,5 @@ jobs:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       with:
-        lane: 'beta'
+        lane: 'release'
 
